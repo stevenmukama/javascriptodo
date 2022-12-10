@@ -5,6 +5,8 @@ const form = document.getElementById('todoform');
 const todoInput = document.getElementById('newtodo');
 const todosListEl = document.getElementById('todos-list');
 const notificationEl = document.querySelector('.notification');
+// deleteselecteditems
+const deleteButton = document.getElementById('removeitem');
 
 // VARS
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -13,7 +15,7 @@ let EditTodoId = -1;
 // RENDER TODOS
 function renderTodos() {
   if (todos.length === 0) {
-    todosListEl.innerHTML = '<center>Add task here and Press Enter!</center>';
+    todosListEl.innerHTML = '<center>Add tasks here and Press Enter !</center>';
     return;
   }
 
@@ -29,7 +31,7 @@ function renderTodos() {
         style="color : ${todo.color}"
         data-action="check"
       ></i>
-      <p class="${todo.completed ? 'completed' : ''}" data-action="check" >${todo.value}</p>
+      <p class="${todo.completed ? 'completed' : ''}"  onclick="this.classList.toggle('selected')" data-action="check" >${todo.value}</p>
       <i class="bi bi-pencil-square" data-action="edit"></i>
       <i class="bi bi-trash" data-action="delete"></i>
     </div>
@@ -62,6 +64,14 @@ function deleteTodo(todoId) {
   // re-render
   renderTodos();
   localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+if (deleteButton) {
+  deleteButton.addEventListener('click', () => {
+    todos = todos.filter((todo) => !todo.completed);
+    renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos));
+  });
 }
 
 // CLICK EVENT LISTENER FOR ALL THE TODOS
