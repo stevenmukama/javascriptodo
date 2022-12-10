@@ -11,51 +11,6 @@ const notificationEl = document.querySelector('.notification');
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 let EditTodoId = -1;
 
-// 1st render
-renderTodos();
-
-// FORM SUBMIT
-form.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  saveTodo();
-  renderTodos();
-  localStorage.setItem('todos', JSON.stringify(todos));
-});
-
-// SAVE TODO
-function saveTodo() {
-  const todoValue = todoInput.value;
-
-  // check if the todo is empty
-  const isEmpty = todoValue === '';
-
-  // check for duplicate todos
-  const isDuplicate = todos.some((todo) => todo.value.toUpperCase() === todoValue.toUpperCase());
-
-  if (isEmpty) {
-    showNotification("Todo's input is empty");
-  } else if (isDuplicate) {
-    showNotification('Todo already exists!');
-  } else {
-    if (EditTodoId >= 0) {
-      todos = todos.map((todo, index) => ({
-        ...todo,
-        value: index === EditTodoId ? todoValue : todo.value,
-      }));
-      EditTodoId = -1;
-    } else {
-      todos.push({
-        value: todoValue,
-        checked: false,
-        color: '#' + Math.floor(Math.random() * 16777215).toString(16),
-      });
-    }
-
-    todoInput.value = '';
-  }
-}
-
 // RENDER TODOS
 function renderTodos() {
   if (todos.length === 0) {
@@ -85,7 +40,7 @@ function renderTodos() {
 
 // CLICK EVENT LISTENER FOR ALL THE TODOS
 todosListEl.addEventListener('click', (event) => {
-  const target = event.target;
+  const { target } = event;
   const parentElement = target.parentNode;
 
   if (parentElement.className !== 'todo') return;
@@ -95,7 +50,7 @@ todosListEl.addEventListener('click', (event) => {
   const todoId = Number(todo.id);
 
   // target action
-  const action = target.dataset.action;
+  const { action } = target.dataset;
 
   action === 'check' && checkTodo(todoId);
   action === 'edit' && editTodo(todoId);
@@ -142,3 +97,47 @@ function showNotification(msg) {
     notificationEl.classList.remove('notif-enter');
   }, 2000);
 }
+
+// SAVE TODO
+function saveTodo() {
+  const todoValue = todoInput.value;
+
+  // check if the todo is empty
+  const isEmpty = todoValue === '';
+
+  // check for duplicate todos
+  const isDuplicate = todos.some((todo) => todo.value.toUpperCase() === todoValue.toUpperCase());
+
+  if (isEmpty) {
+    showNotification("Todo's input is empty");
+  } else if (isDuplicate) {
+    showNotification('Todo already exists!');
+  } else {
+    if (EditTodoId >= 0) {
+      todos = todos.map((todo, index) => ({
+        ...todo,
+        value: index === EditTodoId ? todoValue : todo.value,
+      }));
+      EditTodoId = -1;
+    } else {
+      todos.push({
+        value: todoValue,
+        checked: false,
+        color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+      });
+    }
+
+    todoInput.value = '';
+  }
+}
+// 1st render
+renderTodos();
+
+// FORM SUBMIT
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  saveTodo();
+  renderTodos();
+  localStorage.setItem('todos', JSON.stringify(todos));
+});
