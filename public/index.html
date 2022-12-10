@@ -1,52 +1,42 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List In JavaScript</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../src/style.css">
-    <title>Document</title>
-
-    <script
-    src="https://kit.fontawesome.com/777c04cd40.js"
-    crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="to-do-container">
+  </head>
+  <body>
+    <div class="container">
       <header>
-        <div class="holder">
-          <h1>Today's To do</h1>
-          <i class="fa-solid fa-arrows-rotate"></i>
+        <div class="header">
+          <h2>Hi Code Explained!</h2>
+        </div>
+        <div class="new-todo">
+          <form id="todoform">
+            <input type="text" name="newtodo" id="newtodo" placeholder="I will do ..." />
+            <button button id="al" aria-label="Name" type="submit">
+              <i class="bi bi-plus-circle-fill"></i>
+            </button>
+          </form>
         </div>
       </header>
-      <div class="divider"></div>
-      <br />
-      <main>
-        <section class="add-form">
-        
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Add to your list..."
-            />
-            <span class="material-symbols-outlined">
-                </span>
-        </section>
-        <br />
-        <div class="divider"></div>
-        <section class="task-list">
-          <div id="tasks">
-            <div class="tasks-list"></div>
-          </div>
-        </section>
-
-        <section class="done">
-          <button type="submit" class="complete">Clear all completed</button>
-        </section>
-      </main>
+      <div id="todos-list">
+        <!-- <div class="todo" id="0">
+          <i class="bi bi-circle"></i>
+          <i class="bi bi-check-circle-fill"></i>
+          <p class="">Go get milk.</p>
+          <i class="bi bi-pencil-square"></i>
+          <i class="bi bi-trash"></i>
+        </div> -->
+      </div>
+      <div class="notification"></div>
     </div>
     <script src="/dist/awesome.js"></script>
     <script src='/src/index.js' type="module" defer ></script>
+    <!-- <script src="../src/index.js"></script> -->
   </body>
 </html>
