@@ -13,7 +13,7 @@ let EditTodoId = -1;
 // RENDER TODOS
 function renderTodos() {
   if (todos.length === 0) {
-    todosListEl.innerHTML = '<center>Nothing to do!</center>';
+    todosListEl.innerHTML = '<center>Add task here and Press Enter!</center>';
     return;
   }
 
@@ -25,11 +25,11 @@ function renderTodos() {
     todosListEl.innerHTML += `
     <div class="todo" id=${index}>
       <i 
-        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        class="bi ${todo.completed ? 'bi-check-circle-fill' : 'bi-circle'}"
         style="color : ${todo.color}"
         data-action="check"
       ></i>
-      <p class="${todo.checked ? 'checked' : ''}" data-action="check">${todo.value}</p>
+      <p class="${todo.completed ? 'completed' : ''}" data-action="check" >${todo.value}</p>
       <i class="bi bi-pencil-square" data-action="edit"></i>
       <i class="bi bi-trash" data-action="delete"></i>
     </div>
@@ -41,7 +41,7 @@ function renderTodos() {
 function checkTodo(todoId) {
   todos = todos.map((todo, index) => ({
     ...todo,
-    checked: index === todoId ? !todo.checked : todo.checked,
+    completed: index === todoId ? !todo.completed : todo.completed,
   }));
 
   renderTodos();
@@ -85,24 +85,6 @@ todosListEl.addEventListener('click', (event) => {
   } else {
     deleteTodo(todoId);
   }
-  // function to delete selected item
-
-  // if (isEmpty) {
-  //   showNotification("Todo's input is empty");
-  // } else if (isDuplicate) {
-  //   showNotification('Todo already exists!');
-  // } else {
-
-  // if (action === 'edit') {
-  //   editTodo(todoId);
-  // }
-
-  // if (action === 'delete') {
-  //   deleteTodo(todoId)
-  // }
-  // action === 'check' && checkTodo(todoId);
-  // action === 'edit' && editTodo(todoId);
-  // action === 'delete' && deleteTodo(todoId);
 });
 // SHOW A NOTIFICATION
 function showNotification(msg) {
@@ -142,7 +124,7 @@ function saveTodo() {
     } else {
       todos.push({
         value: todoValue,
-        checked: false,
+        completed: false,
         color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
       });
     }

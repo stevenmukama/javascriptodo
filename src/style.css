@@ -116,7 +116,7 @@ header {
   word-break: break-all;
 }
 
-.checked {
+.completed {
   text-decoration: line-through;
   color: grey;
 }
