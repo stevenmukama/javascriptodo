@@ -38,25 +38,6 @@ function renderTodos() {
   });
 }
 
-// CLICK EVENT LISTENER FOR ALL THE TODOS
-todosListEl.addEventListener('click', (event) => {
-  const { target } = event;
-  const parentElement = target.parentNode;
-
-  if (parentElement.className !== 'todo') return;
-
-  // t o d o id
-  const todo = parentElement;
-  const todoId = Number(todo.id);
-
-  // target action
-  const { action } = target.dataset;
-
-  action === 'check' && checkTodo(todoId);
-  action === 'edit' && editTodo(todoId);
-  action === 'delete' && deleteTodo(todoId);
-});
-
 // CHECK A TODO
 function checkTodo(todoId) {
   todos = todos.map((todo, index) => ({
@@ -84,6 +65,45 @@ function deleteTodo(todoId) {
   localStorage.setItem('todos', JSON.stringify(todos));
 }
 
+// CLICK EVENT LISTENER FOR ALL THE TODOS
+todosListEl.addEventListener('click', (event) => {
+  const { target } = event;
+  const parentElement = target.parentNode;
+
+  if (parentElement.className !== 'todo') return;
+
+  // t o d o id
+  const todo = parentElement;
+  const todoId = Number(todo.id);
+
+  // target action
+  const { action } = target.dataset;
+
+  if (action === 'check') {
+    checkTodo(todoId);
+  } else if (action === 'edit') {
+    editTodo(todoId);
+  } else {
+    deleteTodo(todoId);
+  }
+
+  // if (isEmpty) {
+  //   showNotification("Todo's input is empty");
+  // } else if (isDuplicate) {
+  //   showNotification('Todo already exists!');
+  // } else {
+
+  // if (action === 'edit') {
+  //   editTodo(todoId);
+  // }
+
+  // if (action === 'delete') {
+  //   deleteTodo(todoId)
+  // }
+  // action === 'check' && checkTodo(todoId);
+  // action === 'edit' && editTodo(todoId);
+  // action === 'delete' && deleteTodo(todoId);
+});
 // SHOW A NOTIFICATION
 function showNotification(msg) {
   // change the message
