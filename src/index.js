@@ -1,5 +1,4 @@
 import 'lodash';
-// import todoList from './modules/index.js';
 
 // SELECT ELEMENTS
 const form = document.getElementById('todoform');
@@ -86,6 +85,7 @@ todosListEl.addEventListener('click', (event) => {
   } else {
     deleteTodo(todoId);
   }
+  // function to delete selected item
 
   // if (isEmpty) {
   //   showNotification("Todo's input is empty");

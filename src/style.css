@@ -1,81 +1,9 @@
-/* * {
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.to-do-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border: 1px solid;
-  width: 40%;
-  min-height: 100px;
-}
-
-.holder {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 10px;
-}
-
-.add-form {
-  display: flex;
-  justify-content: space-between;
-  padding: 3px;
-}
-
-.add-form input {
-  font-style: italic;
-  width: 100%;
-  border: none;
-}
-
-.add-form input:focus {
-  outline: none;
-  font-style: normal;
-}
-
-.divider {
-  width: 100%;
-  border-top: solid 1px;
-  border-bottom: none;
-}
-
-.complete {
-  width: 100%;
-  border: none;
-  height: 50px;
-  font-size: 17px;
-}
-
-.todo-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 12px;
-}
-
-.checkbox-description-container {
-  display: flex;
-}
-
-.checkbox-description-container p {
-  margin-left: 5px;
-} */
-
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 :root {
   --container-height: 600px;
   --contaier-width: 400px;
-  --header-height: 150px;
+  --header-height: 60px;
 }
 
 * {
@@ -107,10 +35,6 @@ body {
 
 header {
   width: 100%;
-  height: var(--header-height);
-
-  /* background-image: url('./img/bg.jpg'); */
-  background-size: cover;
   border-radius: 5px 5px 0 0;
 }
 
@@ -137,13 +61,10 @@ header {
 .new-todo form input {
   flex: 1;
   height: 40px;
-  background-color: transparent;
   border: none;
   border-right: 0;
-  outline: transparent;
   padding-left: 0.5rem;
   font-size: 1rem;
-  color: #fff;
 }
 
 .new-todo form button {
