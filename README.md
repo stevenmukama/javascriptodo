@@ -148,7 +148,12 @@ Example commands:
 ### Install
 
 Install this project with:
+ 1.clone the repository: git clone https://github.com/stevenmukama/javascriptodo.git
 
+ 2. cd javascriptodo
+ 3. npm install 
+ 4. open with live server
+ 5. Type in the input field and press Enter to see the functionalities
 <!--
 Example command:
 
@@ -161,7 +166,8 @@ Example command:
 ### Usage
 
 To run the project, execute the following command:
-
+ 
+ - Open with live server
 <!--
 Example command:
 
