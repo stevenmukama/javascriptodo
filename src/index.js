@@ -5,7 +5,6 @@ const form = document.getElementById('todoform');
 const todoInput = document.getElementById('newtodo');
 const todosListEl = document.getElementById('todos-list');
 const notificationEl = document.querySelector('.notification');
-// deleteselecteditems
 const deleteButton = document.getElementById('removeitem');
 
 // VARS

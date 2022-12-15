@@ -3,7 +3,6 @@ const form = document.getElementById('todoform');
 const todoInput = document.getElementById('newtodo');
 const todosListEl = document.getElementById('todos-list');
 const notificationEl = document.querySelector('.notification');
-// deleteselecteditems
 const deleteButton = document.getElementById('removeitem');
 
 // VARS
@@ -56,6 +55,8 @@ function checkTodo(todoId) {
 function editTodo(todoId) {
   todoInput.value = todos[todoId].value;
   EditTodoId = todoId;
+
+  return todos;
 }
 
 // DELETE TODO
@@ -159,4 +160,6 @@ form.addEventListener('submit', (event) => {
   localStorage.setItem('todos', JSON.stringify(todos));
 });
 
-module.exports = { todos, saveTodo, deleteTodo };
+module.exports = {
+  todos, saveTodo, deleteTodo, editTodo,
+};

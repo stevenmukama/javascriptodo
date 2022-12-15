@@ -35,7 +35,9 @@ document.body.innerHTML = `<!DOCTYPE html>
   </body>
 </html>
 `;
-const { todos, saveTodo, deleteTodo } = require('./utils.js');
+const {
+  todos, saveTodo, deleteTodo, editTodo,
+} = require('./utils.js');
 
 const todoInput = document.getElementById('newtodo');
 
@@ -50,9 +52,6 @@ describe('Add Task Test ', () => {
     saveTodo();
     expect(todos).toHaveLength(2);
   });
-  test('Add task 3', () => {
-    expect(todos.length).toEqual(2);
-  });
 });
 
 describe('remove Task Test ', () => {
@@ -63,5 +62,67 @@ describe('remove Task Test ', () => {
   test('remove task', () => {
     const newTodos = deleteTodo(0);
     expect(newTodos).toHaveLength(0);
+  });
+});
+
+// edit
+// describe('edit Task Test ', () => {
+//   test('edit task', () => {
+//     todoInput.value = 'Task 1';
+//     saveTodo();
+//     // Edit the first task
+//     editTodo(0, 'Edited task');
+//     expect(todos[0].value).toEqual('Edited task');
+//   });
+// });
+// describe('edit Task Test ', () => {
+//   test('edit task', () => {
+//     todoInput.value = 'Task 1';
+//     saveTodo();
+
+//     // Edit the first task
+//     editTodo(0, 'Edited task');
+
+//     // Check that the task has been updated
+//     expect(todos[0].value).toEqual('Edited task');
+//   });
+// });
+
+// describe('Add Task Test ', () => {
+//   test('Add task', () => {
+//     todoInput.value = 'Task 1';
+//     saveTodo();
+//     // expect(todos).toHaveLength(1);
+
+// describe('edit Task Test ', () => {
+//   test('edit task', () => {
+//     todoInput.value = 'Task 1';
+//     saveTodo();
+
+//     // Spy on the editTodo function
+//     jest.spyOn(window, 'editTodo');
+
+//     //
+
+//     // Edit the first task
+//     editTodo(0, 'Edited task');
+//     // Check that the task has been updated
+//     expect(todos[0].value).toEqual('Edited task');
+//   });
+// });
+describe('edit Task Test ', () => {
+  test('edit task', () => {
+    const newInput = document.getElementById('newtodo');
+    newInput.value = 'Task 1';
+    // saveTodo();
+
+    // Edit the first task
+    editTodo(0, 'Edited task');
+
+    // Check that the task has been updated
+    expect(todos[0].value).toEqual('Edited task');
+
+    // Check that the editTodo function is called with the correct arguments
+    expect(editTodo).toHaveBeenCalledWith(0, 'Edited task');
   });
 });
