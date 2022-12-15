@@ -3,4 +3,4 @@ hint-report
 .vscode
 
 # testing
-.coverage
+coverage
