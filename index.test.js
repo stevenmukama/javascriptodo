@@ -1,5 +1,3 @@
-const { saveTodo } = require('./utils.js');
-
 document.body.innerHTML = `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,17 +35,33 @@ document.body.innerHTML = `<!DOCTYPE html>
   </body>
 </html>
 `;
+const { todos, saveTodo, deleteTodo } = require('./utils.js');
 
-const form = document.getElementById('todoform');
 const todoInput = document.getElementById('newtodo');
-const todosListEl = document.getElementById('todos-list');
-const notificationEl = document.querySelector('.notification');
-// deleteselecteditems
-const deleteButton = document.getElementById('removeitem');
 
 describe('Add Task Test ', () => {
   test('Add task', () => {
-    document.getElementById('newtodo');
-    // expect().
+    todoInput.value = 'Task 1';
+    saveTodo();
+    expect(todos).toHaveLength(1);
+  });
+  test('Add task 2', () => {
+    todoInput.value = 'Task 2';
+    saveTodo();
+    expect(todos).toHaveLength(2);
+  });
+  test('Add task 3', () => {
+    expect(todos.length).toEqual(2);
+  });
+});
+
+describe('remove Task Test ', () => {
+  test('remove task', () => {
+    const newTodos = deleteTodo(0);
+    expect(newTodos).toHaveLength(1);
+  });
+  test('remove task', () => {
+    const newTodos = deleteTodo(0);
+    expect(newTodos).toHaveLength(0);
   });
 });

@@ -30,10 +30,10 @@ function renderTodos() {
         data-action="check"
       ></i>
       <p class="${
-        todo.completed ? 'completed' : ''
-      }"  onclick="this.classList.toggle('selected')" data-action="check" >${
-      todo.value
-    }</p>
+  todo.completed ? 'completed' : ''
+}"  onclick="this.classList.toggle('selected')" data-action="check" >${
+  todo.value
+}</p>
       <i class="bi bi-pencil-square" data-action="edit"></i>
       <i class="bi bi-trash" data-action="delete"></i>
     </div>
@@ -66,6 +66,7 @@ function deleteTodo(todoId) {
   // re-render
   renderTodos();
   localStorage.setItem('todos', JSON.stringify(todos));
+  return todos;
 }
 
 if (deleteButton) {
@@ -114,7 +115,6 @@ function showNotification(msg) {
 
 // SAVE TODO
 function saveTodo() {
-  const todosListEl = document.getElementById('todos-list');
   const todoValue = todoInput.value;
 
   // check if the todo is empty
@@ -122,7 +122,7 @@ function saveTodo() {
 
   // check for duplicate todos
   const isDuplicate = todos.some(
-    (todo) => todo.value.toUpperCase() === todoValue.toUpperCase()
+    (todo) => todo.value.toUpperCase() === todoValue.toUpperCase(),
   );
 
   if (isEmpty) {
@@ -159,4 +159,4 @@ form.addEventListener('submit', (event) => {
   localStorage.setItem('todos', JSON.stringify(todos));
 });
 
-module.exports = { saveTodo, deleteTodo };
+module.exports = { todos, saveTodo, deleteTodo };
