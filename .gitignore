@@ -1,0 +1,6 @@
+node_modules/
+hint-report
+.vscode
+
+# testing
+coverage
