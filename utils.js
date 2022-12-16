@@ -40,6 +40,12 @@ function renderTodos() {
   });
 }
 
+// clear all todos
+function clearAllTodos() {
+  todos = [];
+  return todos;
+}
+
 // CHECK A TODO
 function checkTodo(todoId) {
   todos = todos.map((todo, index) => ({
@@ -52,11 +58,17 @@ function checkTodo(todoId) {
 }
 
 // EDIT A TODO
-function editTodo(todoId) {
-  todoInput.value = todos.value;
-  EditTodoId = todoId;
-
-  return todos;
+function editTodo(todoId, value) {
+  // todoInput.value = todos.value;
+  // EditTodoId = todoId;
+  const newTodos = [...todos];
+  const getIndex = newTodos.findIndex((item) => item.index === todoId);
+  if (getIndex >= 0) {
+    newTodos[getIndex].value = value;
+    todos = [...newTodos];
+    return todos;
+  }
+  return editTodo;
 }
 
 // DELETE TODO
@@ -147,6 +159,8 @@ function saveTodo() {
 
     todoInput.value = '';
   }
+
+  return todos;
 }
 // 1st render
 renderTodos();
@@ -161,5 +175,5 @@ form.addEventListener('submit', (event) => {
 });
 
 module.exports = {
-  todos, saveTodo, deleteTodo, editTodo,
+  todos, saveTodo, deleteTodo, editTodo, clearAllTodos,
 };

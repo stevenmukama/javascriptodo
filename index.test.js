@@ -35,51 +35,72 @@ document.body.innerHTML = `<!DOCTYPE html>
   </body>
 </html>
 `;
-const {
-  todos, saveTodo, deleteTodo, editTodo,
-} = require('./utils.js');
+const { saveTodo, deleteTodo, editTodo } = require('./utils.js');
 
 const todoInput = document.getElementById('newtodo');
 
 describe('Add Task Test ', () => {
   test('Add task', () => {
     todoInput.value = 'Task 1';
-    saveTodo();
-    expect(todos).toHaveLength(1);
+    const nt = saveTodo();
+    expect(nt).toHaveLength(1);
   });
   test('Add task 2', () => {
     todoInput.value = 'Task 2';
-    saveTodo();
-    expect(todos).toHaveLength(2);
+    const nt = saveTodo();
+    expect(nt).toHaveLength(2);
   });
 });
 
 describe('remove Task Test ', () => {
   test('remove task', () => {
-    const newTodos = deleteTodo(0);
-    expect(newTodos).toHaveLength(1);
+    const newTodosDelete = deleteTodo(0);
+    expect(newTodosDelete).toHaveLength(1);
   });
   test('remove task', () => {
-    const newTodos = deleteTodo(0);
-    expect(newTodos).toHaveLength(0);
+    const newTodosDelete = deleteTodo(0);
+    expect(newTodosDelete).toHaveLength(0);
   });
 });
 
 // edit
-describe('Edit task', () => {
-  test('should edit a task', () => {
-    todoInput.value = 'edittask2';
-    saveTodo();
-    todoInput.value = 'edittask3';
-    saveTodo();
-    const input = document.getElementById(1).querySelector('newtodo');
-    input.value = 'We have to finished testing';
-    const newTodos = editTodo(1);
-    expect(newTodos).toMatch('We have to finished testing');
+// describe('Edit task', () => {
+//   test('should edit a task', () => {
+//     todoInput.value = 'Task 1';
+//     saveTodo();
+//     expect(todos).toHaveLength(1);
+//   });
+
+// test('should edit a task', () => {
+//   const newTodos = editTodo(1);
+//   expect(newTodos).toHaveLength(0);
+// });
+// });
+
+describe('edit task', () => {
+  test('should return edit task', () => {
+    todoInput.value = 'Task 1';
+    const nt = saveTodo();
+    const newNt = editTodo(nt[0].id, 'task edited');
+    expect(newNt[0].value).toBe('task edited');
   });
 
-  // test('should edit a task', () => {
-  //   const newTodos = editTodo(1);
-  //   expect(newTodos).toHaveLength(0);
-  // });
+  test('should return edit task', () => {
+    todoInput.value = 'Task 1';
+    const nt = saveTodo();
+    const value = 'edit the task';
+    const newNt = editTodo(nt[0].id, value);
+
+    expect(newNt[0].value).toMatch(value);
+  });
+
+  test('should return edit task', () => {
+    todoInput.value = 'Task 1';
+    const nt = saveTodo();
+    const value = 'edit the task';
+    const newNt = editTodo(nt[0].id, value);
+
+    // expect(newNt[0].value).toMatch(value);
+    expect(newNt[0].value).toEqual(value);
+  });
 });
