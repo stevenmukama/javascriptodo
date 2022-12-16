@@ -3,7 +3,6 @@ const form = document.getElementById('todoform');
 const todoInput = document.getElementById('newtodo');
 const todosListEl = document.getElementById('todos-list');
 const notificationEl = document.querySelector('.notification');
-const deleteButton = document.getElementById('removeitem');
 
 // VARS
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -23,7 +22,7 @@ function renderTodos() {
   todos.forEach((todo, index) => {
     todosListEl.innerHTML += `
     <div class="todo" id=${index}>
-      <i 
+      <i id="icons-${index}"
         class="bi ${todo.completed ? 'bi-check-circle-fill' : 'bi-circle'}"
         style="color : ${todo.color}"
         data-action="check"
@@ -43,6 +42,11 @@ function renderTodos() {
 // clear all todos
 function clearAllTodos() {
   todos = [];
+  return todos;
+}
+
+// get todo
+function getTodos() {
   return todos;
 }
 
@@ -82,11 +86,11 @@ function deleteTodo(todoId) {
   return todos;
 }
 
-  function clearCompleted () {
-    todos = todos.filter((todo) => !todo.completed);
-    renderTodos();
-   return todos 
-  }
+function clearCompleted() {
+  todos = todos.filter((todo) => !todo.completed);
+  renderTodos();
+  return todos;
+}
 
 // CLICK EVENT LISTENER FOR ALL THE TODOS
 todosListEl.addEventListener('click', (event) => {
@@ -153,6 +157,7 @@ function saveTodo() {
         completed: false,
         color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
       });
+      renderTodos();
     }
 
     todoInput.value = '';
@@ -173,5 +178,5 @@ form.addEventListener('submit', (event) => {
 });
 
 module.exports = {
-  todos, saveTodo, deleteTodo, editTodo, clearAllTodos,
+  todos, saveTodo, deleteTodo, editTodo, clearAllTodos, clearCompleted, getTodos,
 };

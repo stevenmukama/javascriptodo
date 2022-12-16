@@ -35,7 +35,9 @@ document.body.innerHTML = `<!DOCTYPE html>
   </body>
 </html>
 `;
-const { saveTodo, deleteTodo, editTodo } = require('./utils.js');
+const {
+  saveTodo, deleteTodo, editTodo, clearAllTodos, clearCompleted, getTodos,
+} = require('./utils.js');
 
 const todoInput = document.getElementById('newtodo');
 
@@ -114,3 +116,40 @@ describe('edit task', () => {
 //     expect(newNt[0].value).toBe('task edited');
 //   });
 // });
+
+describe('Check Update of completed task', () => {
+  test('Check if completed update', () => {
+    clearAllTodos();
+
+    todoInput.value = 'Task 1';
+    saveTodo();
+    todoInput.value = 'Task 2';
+    saveTodo();
+
+    document.getElementById('icons-0').click();
+    expect(getTodos()[0].completed).toBe(true);
+    expect(getTodos()[1].completed).toBe(false);
+  });
+});
+
+describe('Test clear all completed task', () => {
+  test('Test clear all checked task', () => {
+    clearAllTodos();
+
+    todoInput.value = 'Task n1';
+    saveTodo();
+    todoInput.value = 'Task n2';
+    saveTodo();
+
+    document.getElementById('icons-0').click();
+    // console.log('Test§§§§§§§§§§, ', document.getElementById('icons-0'))
+    const newTodos = clearCompleted();
+    expect(newTodos).toHaveLength(1);
+  });
+
+  test('Test clear All checked task again', () => {
+    document.getElementById('icons-0').click();
+    const newTodos = clearCompleted();
+    expect(newTodos).toHaveLength(0);
+  });
+});
