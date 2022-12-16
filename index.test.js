@@ -65,20 +65,6 @@ describe('remove Task Test ', () => {
   });
 });
 
-// edit
-// describe('Edit task', () => {
-//   test('should edit a task', () => {
-//     todoInput.value = 'Task 1';
-//     saveTodo();
-//     expect(todos).toHaveLength(1);
-//   });
-
-// test('should edit a task', () => {
-//   const newTodos = editTodo(1);
-//   expect(newTodos).toHaveLength(0);
-// });
-// });
-
 describe('edit task', () => {
   test('should return edit task', () => {
     todoInput.value = 'Task 1';
@@ -106,16 +92,6 @@ describe('edit task', () => {
     expect(newNt[0].value).toEqual(value);
   });
 });
-
-// Clear all completed
-// describe('edit task', () => {
-//   test('should Clear all completed task', () => {
-//     todoInput.value = 'Task 1';
-//     const nt = saveTodo();
-//     const newNt = editTodo(nt[0].id, 'task edited');
-//     expect(newNt[0].value).toBe('task edited');
-//   });
-// });
 
 describe('Check Update of completed task', () => {
   test('Check if completed update', () => {
