@@ -53,7 +53,7 @@ function checkTodo(todoId) {
 
 // EDIT A TODO
 function editTodo(todoId) {
-  todoInput.value = todos[todoId].value;
+  todoInput.value = todos.value;
   EditTodoId = todoId;
 
   return todos;

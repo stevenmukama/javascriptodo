@@ -66,63 +66,20 @@ describe('remove Task Test ', () => {
 });
 
 // edit
-// describe('edit Task Test ', () => {
-//   test('edit task', () => {
-//     todoInput.value = 'Task 1';
-//     saveTodo();
-//     // Edit the first task
-//     editTodo(0, 'Edited task');
-//     expect(todos[0].value).toEqual('Edited task');
-//   });
-// });
-// describe('edit Task Test ', () => {
-//   test('edit task', () => {
-//     todoInput.value = 'Task 1';
-//     saveTodo();
-
-//     // Edit the first task
-//     editTodo(0, 'Edited task');
-
-//     // Check that the task has been updated
-//     expect(todos[0].value).toEqual('Edited task');
-//   });
-// });
-
-// describe('Add Task Test ', () => {
-//   test('Add task', () => {
-//     todoInput.value = 'Task 1';
-//     saveTodo();
-//     // expect(todos).toHaveLength(1);
-
-// describe('edit Task Test ', () => {
-//   test('edit task', () => {
-//     todoInput.value = 'Task 1';
-//     saveTodo();
-
-//     // Spy on the editTodo function
-//     jest.spyOn(window, 'editTodo');
-
-//     //
-
-//     // Edit the first task
-//     editTodo(0, 'Edited task');
-//     // Check that the task has been updated
-//     expect(todos[0].value).toEqual('Edited task');
-//   });
-// });
-describe('edit Task Test ', () => {
-  test('edit task', () => {
-    const newInput = document.getElementById('newtodo');
-    newInput.value = 'Task 1';
-    // saveTodo();
-
-    // Edit the first task
-    editTodo(0, 'Edited task');
-
-    // Check that the task has been updated
-    expect(todos[0].value).toEqual('Edited task');
-
-    // Check that the editTodo function is called with the correct arguments
-    expect(editTodo).toHaveBeenCalledWith(0, 'Edited task');
+describe('Edit task', () => {
+  test('should edit a task', () => {
+    todoInput.value = 'edittask2';
+    saveTodo();
+    todoInput.value = 'edittask3';
+    saveTodo();
+    const input = document.getElementById(1).querySelector('newtodo');
+    input.value = 'We have to finished testing';
+    const newTodos = editTodo(1);
+    expect(newTodos).toMatch('We have to finished testing');
   });
+
+  // test('should edit a task', () => {
+  //   const newTodos = editTodo(1);
+  //   expect(newTodos).toHaveLength(0);
+  // });
 });
