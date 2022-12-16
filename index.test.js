@@ -104,3 +104,13 @@ describe('edit task', () => {
     expect(newNt[0].value).toEqual(value);
   });
 });
+
+// Clear all completed
+// describe('edit task', () => {
+//   test('should Clear all completed task', () => {
+//     todoInput.value = 'Task 1';
+//     const nt = saveTodo();
+//     const newNt = editTodo(nt[0].id, 'task edited');
+//     expect(newNt[0].value).toBe('task edited');
+//   });
+// });

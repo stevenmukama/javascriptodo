@@ -82,13 +82,11 @@ function deleteTodo(todoId) {
   return todos;
 }
 
-if (deleteButton) {
-  deleteButton.addEventListener('click', () => {
+  function clearCompleted () {
     todos = todos.filter((todo) => !todo.completed);
     renderTodos();
-    localStorage.setItem('todos', JSON.stringify(todos));
-  });
-}
+   return todos 
+  }
 
 // CLICK EVENT LISTENER FOR ALL THE TODOS
 todosListEl.addEventListener('click', (event) => {
